@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post,Body } from '@nestjs/common';
 import { AppService } from './app.service';
+import { CreateDto } from './dto/create.dto';
 
 let User=[];
 @Controller()
@@ -14,5 +15,10 @@ export class AppController {
   @Get('user')
   getUsers(){
     return User;
+  }
+  @Post('add')
+  addUser(@Body() create:CreateDto){
+    User.push(create);
+    return 'user added'
   }
 }
