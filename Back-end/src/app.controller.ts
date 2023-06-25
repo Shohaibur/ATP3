@@ -7,11 +7,19 @@ let User=[];
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  // @Get()
-  // getHello(): string {
-  //   return this.appService.getHello();
-  // }
+
+  @Get('/1')
+  getTest(): string {
+    return this.appService.getTest();
+  }
+
+  @Get('/2')
+  getTest2(): string {
+    return 'Test 2?';
+  }
  
+
+
   @Get('user')
   getUsers(){
     return User;
