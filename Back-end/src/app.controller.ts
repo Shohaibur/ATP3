@@ -1,8 +1,7 @@
 import { Controller, Get, Post,Body } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CreateDto } from './dto/create.dto';
+import { CreateDto, User } from './dto/create.dto';
 
-let User=[];
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -12,21 +11,22 @@ export class AppController {
   getTest(): string {
     return this.appService.getTest();
   }
-
   @Get('/2')
   getTest2(): string {
     return 'Test 2?';
   }
- 
 
-
-  @Get('user')
-  getUsers(){
-    return User;
-  }
-  @Post('add')
-  addUser(@Body() create:CreateDto){
+ //'''''''''''''Code''''''''''''''
+  
+  @Post('addUser')
+  createUser(@Body() create:CreateDto){
     User.push(create);
     return 'user added'
   }
+
+  @Get('users')
+  getUsers(){
+    return User;
+  }
+
 }

@@ -5,6 +5,6 @@ export declare class AppController {
     constructor(appService: AppService);
     getTest(): string;
     getTest2(): string;
+    createUser(create: CreateDto): string;
     getUsers(): any[];
-    addUser(create: CreateDto): string;
 }

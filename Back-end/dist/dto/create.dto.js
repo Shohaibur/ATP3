@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateDto = void 0;
+exports.CreateDto = exports.User = void 0;
+exports.User = [];
 class CreateDto {
 }
 exports.CreateDto = CreateDto;

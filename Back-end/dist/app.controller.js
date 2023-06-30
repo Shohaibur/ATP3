@@ -16,7 +16,6 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const create_dto_1 = require("./dto/create.dto");
-let User = [];
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -27,12 +26,12 @@ let AppController = class AppController {
     getTest2() {
         return 'Test 2?';
     }
-    getUsers() {
-        return User;
-    }
-    addUser(create) {
-        User.push(create);
+    createUser(create) {
+        create_dto_1.User.push(create);
         return 'user added';
+    }
+    getUsers() {
+        return create_dto_1.User;
     }
 };
 __decorate([
@@ -48,18 +47,18 @@ __decorate([
     __metadata("design:returntype", String)
 ], AppController.prototype, "getTest2", null);
 __decorate([
-    (0, common_1.Get)('user'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], AppController.prototype, "getUsers", null);
-__decorate([
-    (0, common_1.Post)('add'),
+    (0, common_1.Post)('addUser'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_dto_1.CreateDto]),
     __metadata("design:returntype", void 0)
-], AppController.prototype, "addUser", null);
+], AppController.prototype, "createUser", null);
+__decorate([
+    (0, common_1.Get)('users'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "getUsers", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
