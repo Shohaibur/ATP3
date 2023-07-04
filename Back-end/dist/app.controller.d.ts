@@ -5,5 +5,7 @@ export declare class AppController {
     constructor(appService: AppService);
     createUser(create: CreateDto): string;
     getUsers(): any[];
-    getUser(id: number): any;
+    findUser(id: number): any;
+    updateUser(id: number, update: Partial<CreateDto>): string;
+    deleteUser(id: number): string;
 }

@@ -28,8 +28,24 @@ let AppController = class AppController {
     getUsers() {
         return User;
     }
-    getUser(id) {
+    findUser(id) {
         return User.find((User) => User.id === id);
+    }
+    updateUser(id, update) {
+        const user = User.find((user) => user.id === id);
+        if (!user) {
+            return 'User not found';
+        }
+        Object.assign(user, update);
+        return 'User updated';
+    }
+    deleteUser(id) {
+        const userIndex = User.findIndex((user) => user.id === id);
+        if (userIndex === -1) {
+            return 'User not found';
+        }
+        User.splice(userIndex, 1);
+        return 'User deleted';
     }
 };
 __decorate([
@@ -51,7 +67,22 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
-], AppController.prototype, "getUser", null);
+], AppController.prototype, "findUser", null);
+__decorate([
+    (0, common_1.Patch)('user/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", String)
+], AppController.prototype, "updateUser", null);
+__decorate([
+    (0, common_1.Delete)('user/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", String)
+], AppController.prototype, "deleteUser", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
