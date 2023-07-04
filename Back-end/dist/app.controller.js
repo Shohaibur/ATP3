@@ -16,49 +16,42 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const create_dto_1 = require("./dto/create.dto");
+let User = [];
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    getTest() {
-        return this.appService.getTest();
-    }
-    getTest2() {
-        return 'Test 2?';
-    }
     createUser(create) {
-        create_dto_1.User.push(create);
+        User.push(create);
         return 'user added';
     }
     getUsers() {
-        return create_dto_1.User;
+        return User;
+    }
+    getUser(id) {
+        return User.find((User) => User.id === id);
     }
 };
 __decorate([
-    (0, common_1.Get)('/1'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppController.prototype, "getTest", null);
-__decorate([
-    (0, common_1.Get)('/2'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppController.prototype, "getTest2", null);
-__decorate([
-    (0, common_1.Post)('addUser'),
+    (0, common_1.Post)('user'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_dto_1.CreateDto]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "createUser", null);
 __decorate([
-    (0, common_1.Get)('users'),
+    (0, common_1.Get)('user'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "getUsers", null);
+__decorate([
+    (0, common_1.Get)('user/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Object)
+], AppController.prototype, "getUser", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
