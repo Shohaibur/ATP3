@@ -14,16 +14,21 @@ export class AppController {
     return 'user added'
   }
 
-  @Get('user') //show users
+  @Get('user') //show all users
   getUsers(){
     return User;
   }
 
   @Get('user/:id') //find user by id
-  findUser(@Param('id')id:number):any
-  {
-    return User.find((User)=>User.id===id);
+findUser(@Param('id') id: number): any {
+  const user = User.find((user) => user.id === id);
+  if (!user) {
+    return 'User not found';
   }
+
+  return user;
+}
+
   
   @Patch('user/:id') // Update user by id
   updateUser(@Param('id') id: number, @Body() update: Partial<CreateDto>): string {
@@ -32,11 +37,11 @@ export class AppController {
       return 'User not found';
     }
 
-    Object.assign(user, update);
+    Object.assign(user, update); 
     return 'User updated';
   }
 
-  @Delete('user/:id') // Delete user by ID
+  @Delete('user/:id') // Delete user by id
   deleteUser(@Param('id') id: number): string {
     const userIndex = User.findIndex((user) => user.id === id);
     if (userIndex === -1) {
@@ -47,7 +52,4 @@ export class AppController {
     return 'User deleted';
   }
   
-
-
-
 }

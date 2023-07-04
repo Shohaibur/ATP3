@@ -29,7 +29,11 @@ let AppController = class AppController {
         return User;
     }
     findUser(id) {
-        return User.find((User) => User.id === id);
+        const user = User.find((user) => user.id === id);
+        if (!user) {
+            return 'User not found';
+        }
+        return user;
     }
     updateUser(id, update) {
         const user = User.find((user) => user.id === id);
