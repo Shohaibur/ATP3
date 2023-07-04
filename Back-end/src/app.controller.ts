@@ -8,18 +8,18 @@ export class AppController {
 
 
   
-  @Post('user')
+  @Post('user') //add user
   createUser(@Body() create:CreateDto){
     User.push(create);
     return 'user added'
   }
 
-  @Get('user')
+  @Get('user') //show users
   getUsers(){
     return User;
   }
 
-  @Get('user/:id')
+  @Get('user/:id') //find user by id
   getUser(@Param('id')id:number):any
   {
     return User.find((User)=>User.id===id);
